@@ -1,6 +1,6 @@
 <img src="https://morpheusdata.com/wp-content/uploads/2020/04/morpheus-logo-v2.svg" width="200px">
 
-# Morpheus CLI
+# Lumen Edge Orchestrator CLI
 
 - Website: https://www.morpheusdata.com/
 - Guide: [Morpheus CLI Wiki](https://github.com/gomorpheus/morpheus-cli/wiki)
@@ -31,20 +31,20 @@ bundle install
 
 ## Usage
 
-### morpheus command
+### lumen-eo-cli command
 
-This gem installs the [morpheus](https://github.com/gomorpheus/morpheus-cli/wiki/CLI-Manual) binary for running commands in your terminal shell. 
+This gem installs the [morpheus](https://github.com/aaronlumen/lumen-cli/wiki/CLI-Manual) binary for running commands in your terminal shell. 
 
 ```shell
-morpheus remote add
-morpheus instances list
+lumen-eo-cli remote add
+lumen-eo-cli instances list
 ```
 
 ### ruby code
 
-If you are interested in interfacing with the Morpheus appliance in ruby directly, you can use [Morpheus::APIClient](https://github.com/gomorpheus/morpheus-cli/wiki/APIClient) or [Morpheus::Terminal](https://github.com/gomorpheus/morpheus-cli/wiki/Terminal).
+If you are interested in interfacing with the Morpheus appliance in ruby directly, you can use [Morpheus::APIClient](https://github.com/aaronlumen/lumen-cli/wiki/APIClient) or [Morpheus::Terminal](https://github.com/aaronlumen/lumen-cli/wiki/Terminal).
 
-For more detailed usage information, visit the [Morpheus CLI Wiki](https://github.com/gomorpheus/morpheus-cli/wiki).
+For more detailed usage information, visit the [Morpheus CLI Wiki](https://github.com/aaronlumen/lumen-cli/wiki).
 
 
 ## Development
@@ -55,7 +55,7 @@ New CLI commands get added under the library directory: `lib/morpheus/cli/comman
 While developing, you can quickly reload your code changes in a morpheus shell while developing:
 
 ```shell
-morpheus shell
+lumen-eo-cli shell
 ```
 
 Then to reload changes without restarting the morpheus shell (and the ruby process), use:
