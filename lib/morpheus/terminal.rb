@@ -1,4 +1,4 @@
-#require 'morpheus/cli' #todo: remove circular require...
+#require 'morpheus/' #todo: remove circular require...
 require 'morpheus/benchmarking'
 require 'morpheus/logging'
 require 'morpheus/rest_client'
@@ -28,7 +28,7 @@ module Morpheus
   #    assert err == nil
   #
   #    # Write command output to a file instead
-  #    terminal = Morpheus::Terminal.new(stdout: File.new("morpheus-terminal.log", "w+"))
+  #    terminal = Morpheus::Terminal.new(stdout: File.new("lumen-eo-cli-terminal.log", "w+"))
   #    terminal.execute("version")
   #    terminal.execute("instances list")
   #    terminal.execute("apps list")
@@ -72,8 +72,8 @@ module Morpheus
         if ENV['MORPHEUS_PS1']
           @prompt = ENV['MORPHEUS_PS1'].dup
         else
-          #ENV['MORPHEUS_PS1'] = "#{Term::ANSIColor.cyan}morpheus>#{Term::ANSIColor.reset} "
-          @prompt = "#{Term::ANSIColor.cyan}morpheus>#{Term::ANSIColor.reset} "
+          #ENV['MORPHEUS_PS1'] = "#{Term::ANSIColor.green}lumen-eo-cli>#{Term::ANSIColor.reset} "
+          @prompt = "#{Term::ANSIColor.green}lumen-eo-cli>#{Term::ANSIColor.reset} "
         end
       end
       @prompt
@@ -84,7 +84,7 @@ module Morpheus
     end
 
     def self.angry_prompt
-      "#{Term::ANSIColor.red}morpheus:#{Term::ANSIColor.reset} "
+      "#{Term::ANSIColor.red}lumen-eo-cli:#{Term::ANSIColor.reset} "
     end
 
     def self.custom_prompt
@@ -135,7 +135,7 @@ module Morpheus
       set_stderr(stderr)
       
       # establish home directory
-      use_homedir = homedir || ENV['MORPHEUS_CLI_HOME'] || File.join(Dir.home, ".morpheus")
+      use_homedir = homedir || ENV['MORPHEUS_CLI_HOME'] || File.join(Dir.home, ".lumen")
       set_home_directory(use_homedir)
       
       # use colors by default
@@ -278,7 +278,7 @@ module Morpheus
     # alias :'coloring=' :set_coloring
 
     def usage
-      out = "Usage: morpheus [command] [options]\n"
+      out = "Usage: lumen-eo-cli [command] [options]\n"
       # just for printing help. todo: start using this. maybe in class Cli::MainCommand
       # maybe OptionParser's recover() instance method will do the trick
       optparse = Morpheus::Cli::OptionParser.new do|opts|
@@ -319,7 +319,7 @@ module Morpheus
           # if !options[:quiet]
           ::RestClient.log = Morpheus::Logging.debug? ? Morpheus::Logging::DarkPrinter.instance : nil
         end
-        opts.on('-v','--version', "Print the version.") do
+        opts.on('-v','--version', "Print the Lumen Edge CLI version.") do
           @stdout.puts Morpheus::Cli::VERSION
           # exit
         end
@@ -500,7 +500,7 @@ module Morpheus
             @stderr.puts "#{@angry_prompt}[command] argument is required."
             #@stderr.puts "No command given, here's some help:"
             @stderr.print usage
-            return 1, nil # CommandError.new("morpheus requires a command")
+            return 1, nil # CommandError.new("lumen-eo-cli requires a command")
           end
           
           cmd_name, *cmd_args = args
@@ -517,7 +517,7 @@ module Morpheus
           # end
 
           if (defined?(@benchmarking) && @benchmarking) || args.include?('-B') || args.include?('--benchmark')
-            benchmark_name = "morpheus #{formatted_cmd}"
+            benchmark_name = "lumen-eo-cli #{formatted_cmd}"
             benchmark_name.sub!(' -B', '')
             benchmark_name.sub!(' --benchmark', '')
             #benchmark_name << " -B"
